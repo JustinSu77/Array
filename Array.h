@@ -199,6 +199,15 @@ namespace
         size--;
     }
 
+    template<class T>
+    void Array<T>::removeAtEnd()
+    {
+        T* temp = new T[2]{};
+        array[size - 1] = temp[0];
+        delete[] temp;
+        size--;
+    }
+
 
 }
 
