@@ -334,6 +334,19 @@ namespace
 
     }
 
+    template<class T>
+    bool Array<T>::operator==(const Array<T> &arr)
+    {
+        if (size != arr.size || maxSize != arr.maxSize)
+            return false;
+        for (int i = 0; i < size; i++)
+        {
+            if (array[i] != arr.array[i])
+                return false;
+        }
+        return true;
+    }
+
 
 }
 
