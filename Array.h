@@ -67,6 +67,15 @@ namespace
             int size;
             int maxSize;
     };
+
+    template<class T>
+    Array<T>::Array(): size(0),maxSize(10)
+    {
+        array = new T[maxSize]{};
+
+    }
+
+  
 }
 
 
