@@ -215,6 +215,8 @@ namespace
     template<class T>
     void Array<T>::removeAt(int position, T newValue)
     {
+        if (position < 0 || position > size - 1)
+            throw std::runtime_error("removeAt: Array is already empty!");
         if (isEmpty())
             throw std::runtime_error("removeAt: Array is already empty!");
 
