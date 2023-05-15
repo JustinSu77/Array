@@ -187,6 +187,18 @@ namespace
 
     }
 
+    template<class T>
+    void Array<T>::removeAtStart()
+    {
+        if (isEmpty())
+            throw std::runtime_error("removeAtStart: Array is empty!");
+        for (int i = 0; i < size; i++)
+        {
+            array[i] = array[i + 1];
+        }
+        size--;
+    }
+
 
 }
 
