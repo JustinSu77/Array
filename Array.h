@@ -48,7 +48,7 @@ namespace
             void removeAtStart();
             void removeAtEnd();
             void removeAt(int position, T newValue);
-            int indexof(T value);
+            int indexOf(T value);
             T front();
             T back();
             T at(int position);
@@ -244,6 +244,16 @@ namespace
         }
         return -1;
     }
+
+    template<class T>
+    T Array<T>::front()
+    {
+        if (isEmpty())
+            throw std::runtime_error("front: Array is empty!");
+        return array[0];
+    }
+
+  
 
 
 }
