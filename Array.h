@@ -90,7 +90,10 @@ namespace
         return size;
     }
 
-  
+    template<class T>
+    int Array<T>::capacity() {
+        return maxSize;
+    }
 }
 
 
