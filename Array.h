@@ -269,6 +269,40 @@ namespace
         return array[position - 1];
     }
 
+    template<class T>
+    bool Array<T>::isFull()
+    {
+        return size == maxSize;
+    }
+
+    template<class T>
+    bool Array<T>::isEmpty()
+    {
+        return size == 0;
+    }
+
+    template<class T>
+    void Array<T>::sort()
+    {
+        for (int i = 0; i < size; i++)
+        {
+            bool isSwapped = false;
+            for (int j = 0; j < size - i - 1; j++)
+            {
+                if (array[j + 1] > array[j])
+                {
+                    T temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+
+                }
+            }
+            if (!isSwapped)
+                break;
+        }
+
+    }
+
 
 }
 
