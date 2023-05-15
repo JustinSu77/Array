@@ -47,7 +47,7 @@ namespace
             void insertAt(int position, T newValue);
             void removeAtStart();
             void removeAtEnd();
-            void removeAt(T newValue);
+            void removeAt(int position, T newValue);
             int indexof(T value);
             T front();
             T back();
@@ -165,6 +165,8 @@ namespace
     template<class T>
     void Array<T>::insertAt(int position,T newValue)
     {
+        if (position < 0 || position > size - 1)
+            throw std::runtime_error("insertAt: Array is full!");
         if (isFull())
             throw std::runtime_error("insertAt: Array is full!");
         if (position == 0)
@@ -191,7 +193,7 @@ namespace
     void Array<T>::removeAtStart()
     {
         if (isEmpty())
-            throw std::runtime_error("removeAtStart: Array is empty!");
+            throw std::runtime_error("removeAtStart: Array is already empty!");
         for (int i = 0; i < size; i++)
         {
             array[i] = array[i + 1];
@@ -202,9 +204,31 @@ namespace
     template<class T>
     void Array<T>::removeAtEnd()
     {
+        if (isEmpty())
+            throw std::runtime_error("removeAtEnd: Array is already empty!");
         T* temp = new T[2]{};
         array[size - 1] = temp[0];
         delete[] temp;
+        size--;
+    }
+
+    template<class T>
+    void Array<T>::removeAt(int position, T newValue)
+    {
+        if (isEmpty())
+            throw std::runtime_error("removeAt: Array is already empty!");
+
+        if (position == 0)
+        {
+            removeAtEnd();
+            return;
+        }
+        if (position == size - 1)
+        {
+            removeAtEnd();
+            return;
+        }
+
         size--;
     }
 
