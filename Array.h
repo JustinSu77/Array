@@ -44,7 +44,7 @@ namespace
             ~Array();
             void insertAtStart(T newValue);
             void insertAtEnd(T newValue);
-            void insertAt(T newValue);
+            void insertAt(int position, T newValue);
             void removeAtStart();
             void removeAtEnd();
             void removeAt(T newValue);
@@ -149,6 +149,7 @@ namespace
         {
             array[i + 1] = array[i];
         }
+        array[0] = newValue;
         size++;
     }
 
@@ -159,6 +160,31 @@ namespace
             throw std::runtime_error("insertAtEnd: Array is full!");
         array[size] = newValue;
         size++;
+    }
+
+    template<class T>
+    void Array<T>::insertAt(int position,T newValue)
+    {
+        if (isFull())
+            throw std::runtime_error("insertAt: Array is full!");
+        if (position == 0)
+        {
+            insertAtStart(newValue);
+            return;
+        }
+        if (position == size + 1)
+        {
+            insertAtEnd(newValue);
+            return;
+        }
+        for (int i = size; i >= position; i--)
+        {
+            array[i + 1] = array[i];
+        }
+        array[position] = newValue;
+        size++;
+
+
     }
 
 
