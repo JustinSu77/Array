@@ -84,6 +84,13 @@ namespace
         }
         std::cout << std::endl;
     }
+
+    template<class T>
+    int Array<T>::length() {
+        return size;
+    }
+
+  
 }
 
 
