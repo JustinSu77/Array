@@ -86,14 +86,19 @@ namespace
     }
 
     template<class T>
-    int Array<T>::length() {
+    int Array<T>::length()
+    {
         return size;
     }
 
     template<class T>
-    int Array<T>::capacity() {
+    int Array<T>::capacity()
+    {
         return maxSize;
     }
+
+
+
 }
 
 
