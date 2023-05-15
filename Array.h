@@ -52,6 +52,8 @@ namespace
             T front();
             T back();
             T at(int position);
+            bool isFull();
+            bool isEmpty();
             int length();
             int capacity();
             void sort();
@@ -82,6 +84,20 @@ namespace
         if (maxSize > INT_MAX)
             throw std::runtime_error("Array(int maxSize): Given maxSize is too large! ");
         array = new T[maxSize]{};
+    }
+
+    template<class T>
+    Array<T>::Array(const std::initializer_list<T> &list)
+    {
+        delete[] array;
+        size = list.size();
+        maxSize = list.size();
+        int index = 0;
+        for (auto element: list)
+        {
+            array[index] = element;
+            index++;
+        }
     }
 
     template<class T>
@@ -118,6 +134,23 @@ namespace
         return maxSize;
     }
 
+    template<class T>
+    Array<T>::~Array()
+    {
+        delete [] array;
+    }
+
+    template<class T>
+    void Array<T>::insertAtStart(T newValue)
+    {
+        if (isFull())
+            throw std::runtime_error("insertAtStart: Array is full!");
+        for (int i = size; i >= 0; i--)
+        {
+            array[i + 1] = array[i];
+        }
+        size++;
+    }
 
 
 }
