@@ -57,7 +57,7 @@ namespace
             int length();
             int capacity();
             void sort();
-            void fill();
+            void fill(T value);
             void clear();
             void print();
             void operator=(const Array<T>& arr);
@@ -303,6 +303,19 @@ namespace
 
     }
 
+    template<class T>
+    void Array<T>::fill(T value)
+    {
+        delete[] array;
+        array = new T[maxSize]{};
+        for (int i = 0; i < maxSize; i++)
+        {
+            array[i] = value;
+        }
+        size = maxSize;
+    }
+
+ 
 
 }
 
