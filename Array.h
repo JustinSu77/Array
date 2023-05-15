@@ -152,6 +152,15 @@ namespace
         size++;
     }
 
+    template<class T>
+    void Array<T>::insertAtEnd(T newValue)
+    {
+        if (isFull())
+            throw std::runtime_error("insertAtEnd: Array is full!");
+        array[size] = newValue;
+        size++;
+    }
+
 
 }
 
