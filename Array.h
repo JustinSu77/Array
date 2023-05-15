@@ -87,11 +87,9 @@ namespace
     }
 
     template<class T>
-    Array<T>::Array(const std::initializer_list<T> &list)
+    Array<T>::Array(const std::initializer_list<T> &list): size(list.size()), maxSize(list.size())
     {
         delete[] array;
-        size = list.size();
-        maxSize = list.size();
         int index = 0;
         for (auto element: list)
         {
