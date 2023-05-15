@@ -234,6 +234,17 @@ namespace
         size--;
     }
 
+    template<class T>
+    int Array<T>::indexOf(T value)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            if (array[i] == value)
+                return i;
+        }
+        return -1;
+    }
+
 
 }
 
