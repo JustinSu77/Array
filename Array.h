@@ -261,6 +261,14 @@ namespace
         return array[size - 1];
     }
 
+    template<class T>
+    T Array<T>::at(int position)
+    {
+        if (position < 0 || position > size - 1);
+            throw std::runtime_error("at: Given position is out of bounds!");
+        return array[position - 1];
+    }
+
 
 }
 
