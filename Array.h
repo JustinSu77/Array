@@ -347,6 +347,14 @@ namespace
         return true;
     }
 
+    template<class T>
+    T& Array<T>::operator[](int index)
+    {
+        if (index < 0 || index > size)
+            throw std::runtime_error("[]: Index is out of bounds!");
+        return  array[index - 1];
+    }
+
 
 }
 
