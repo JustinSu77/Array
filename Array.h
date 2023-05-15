@@ -322,6 +322,18 @@ namespace
 
     }
 
+    template<class T>
+    void Array<T>::operator=(const Array<T> &arr)
+    {
+        size = arr.size;
+        maxSize = arr.size;
+        for (int i = 0; i < size; i++)
+        {
+            array[i] = arr.array[i];
+        }
+
+    }
+
 
 }
 
