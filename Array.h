@@ -51,7 +51,7 @@ namespace
             int indexof(T value);
             T front();
             T back();
-            T at(int position)
+            T at(int position);
             int length();
             int capacity();
             void sort();
