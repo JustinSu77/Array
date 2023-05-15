@@ -74,6 +74,15 @@ namespace
         array = new T[maxSize]{};
 
     }
+    template<class T>
+    Array<T>::Array(int maxSize): size(0), maxSize(maxSize)
+    {
+        if (maxSize < 0)
+            throw std::runtime_error("Array(int maxSize): Given maxSize cannot be negative");
+        if (maxSize > INT_MAX)
+            throw std::runtime_error("Array(int maxSize): Given maxSize is too large! ");
+        array = new T[maxSize]{};
+    }
 
     template<class T>
     void Array<T>::print()
