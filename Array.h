@@ -315,7 +315,15 @@ namespace
         size = maxSize;
     }
 
- 
+    template<class T>
+    void Array<T>::clear()
+    {
+        delete[] array;
+        array = new T[maxSize]{};
+        size = 0;
+
+    }
+
 
 }
 
