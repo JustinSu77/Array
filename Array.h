@@ -253,7 +253,13 @@ namespace
         return array[0];
     }
 
-  
+    template<class T>
+    T Array<T>::back()
+    {
+        if (isEmpty())
+            throw std::runtime_error("back: Array is empty!")
+        return array[size - 1];
+    }
 
 
 }
