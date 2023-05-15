@@ -85,6 +85,18 @@ namespace
     }
 
     template<class T>
+    Array<T>::Array(const Array &arr)
+    {
+        delete [] array;
+        size = arr.size;
+        maxSize = arr.maxSize;
+        for (int i = 0; i < size; i++)
+        {
+            array[i] = arr.array[i];
+        }
+    }
+
+    template<class T>
     void Array<T>::print()
     {
         for (int i = 0; i < size; i++)
