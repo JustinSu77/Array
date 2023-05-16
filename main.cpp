@@ -1,6 +1,10 @@
 #include <iostream>
+#include "Array.h"
+#include <vector>
+using namespace justin_su;
+int main()
+{
+    Array<int>arr;
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
     return 0;
 }
