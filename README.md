@@ -1,4 +1,4 @@
-/**
+ 
              * Default constructor.
              * Sets length to be 0.
              * Sets maxSize to be 10.
