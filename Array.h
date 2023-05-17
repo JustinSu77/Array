@@ -298,6 +298,7 @@ namespace justin_su
 
             /**
              * Returns the element at given index using bracket operator
+             * If index is < 0 or index is greater than size - 1, throw runtime_error exception
              * @param index as index of element to be returned
              * @return the element at given index
              */
