@@ -59,7 +59,7 @@ namespace justin_su
             Array();
 
             /**
-             * Creates an array with a maximum of given maxSize.
+             * Creates an array with a maximum size of given maxSize.
              * Sets length to be 0.
              * Sets maxSize to be given maxSize.
              * Sets array pointer to a dynamic array with given maxSize.
@@ -70,10 +70,10 @@ namespace justin_su
 
             /**
              * Copy constructor.
-             * Sets size to be arr.size
-             * Sets maxSize to be arr.maxSize.
+             * Sets size to be existingArray.size
+             * Sets maxSize to be existingArray.maxSize.
              * Reallocates array pointer to dynamic array with maxSize elements.
-             * Copies elements from arr.array to array.
+             * Copies elements from existingArray.array to array.
              * @param arr as existing instance of this class.
              */
             Array(const Array<T>& existingArray);
@@ -83,6 +83,7 @@ namespace justin_su
              * Constructor with initializer list.
              * Sets size to be the size of the initializer list.
              * Sets maxSize to be the size of the initializer list.
+             * Copies elements from list to array pointer
              * @param list as initializer_list of elements with data type T to be copied
              */
             Array(const std::initializer_list<T>& list);
