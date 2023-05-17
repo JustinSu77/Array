@@ -6,7 +6,7 @@
         Array()
         Array(int maxSize)
         Array(const Array<T>&arr)
-        Array(std::initializer_list<T>& list)
+        Array(const std::initializer_list<T>& list)
     Destructors
         ~Array()
     Member functions
@@ -87,6 +87,17 @@ namespace justin_su
              */
             Array(const std::initializer_list<T>& list);
 
+            /**
+             * Constructor with initializer list and maxSize
+             * Sets size to be size of the initializer list.
+             * Sets maxSize to be the given maxSize
+             * Copies elements from initializer list to array
+             * If maxSize is less than 0 throws runtime_error
+             * If size of initializer list is greater than maxSize, throws runtime_error
+             * @param list
+             * @param maxSize
+             */
+            Array(const std::initializer_list<T>& list,int maxSize);
 
             /**
              * Destructor.
@@ -300,6 +311,7 @@ namespace justin_su
 
 
 
+
     /**
      * Default constructor.
      * @param T
@@ -318,8 +330,8 @@ namespace justin_su
     Array<T>::Array(int maxSize): size(0), maxSize(maxSize)
     {
         // If given maxSize is negative throw exception
-        if (maxSize < 0)
-            throw std::runtime_error("Array(int maxSize): Given maxSize cannot be negative");
+        if (maxSize <= 0)
+            throw std::runtime_error("Array(int maxSize): Given maxSize needs to be larger than 0");
 
         // Sets array pointer to be a dynamic array with maxSize
         // Initialized to default value of T data type
@@ -330,7 +342,29 @@ namespace justin_su
     Array<T>::Array(const std::initializer_list<T> &list): size(list.size()), maxSize(list.size())
     {
 
+        // Reallocates array pointer to have maxSize and default values
+        array = new T[maxSize]{};
+        // Set index counter to copy elements from list to array
+        int index = 0;
+        // Copy elements from range
+        for (auto element: list) {
+            // Set index of array to element of initializer list
+            array[index] = element;
+            // Increment index counter
+            index++;
+        }
 
+    }
+
+    template<class T>
+    Array<T>::Array(const std::initializer_list<T> &list, int maxSize):size(list.size()), maxSize(maxSize)
+    {
+        // Ensure given maxSize is greater than 1
+        if (maxSize <= 0)
+            throw std::runtime_error("Array(const std::initializer_list<T> &list, int maxSize): Given maxSize needs to be greater than 0 ");
+        // Ensure maxSize is greater than the size of initializer list
+        if (list.size() > maxSize)
+            throw std::runtime_error("Array(const std::initializer_list<T> &list, int maxSize): Given maxSize needs to be greater than the size of initializer list ");
         // Reallocates array pointer to have maxSize and default values
         array = new T[maxSize]{};
         // Set index counter to copy elements from list to array
@@ -459,8 +493,8 @@ namespace justin_su
     void Array<T>::insertAt(int position,T newValue)
     {
         // If given position is out of bounds, throw runtime error
-        if (position < 0 || position > size)
-            throw std::runtime_error("insertAt: Array is full!");
+        if (position < 0 || position > size - 1)
+            throw std::runtime_error("insertAt: Given position is out of bounds!");
         // If array is full, throw runtime error
         if (isFull())
             throw std::runtime_error("insertAt: Array is full!");
@@ -482,7 +516,7 @@ namespace justin_su
             array[i + 1] = array[i];
         }
         // Set given newValue to given position index - 1
-        array[position - 1] = newValue;
+        array[position] = newValue;
         // Increase by 1
         size++;
 
@@ -524,8 +558,8 @@ namespace justin_su
     void Array<T>::removeAt(int position)
     {
         // If given position is out of bounds, throw runtime_error
-        if (position < 0 || position > size - 1)
-            throw std::runtime_error("removeAt: Array is already empty!");
+        if (position < 0 || position > size)
+            throw std::runtime_error("removeAt: Given position is out of bounds!");
         // If array is empty, throw runtime_error
         if (isEmpty())
             throw std::runtime_error("removeAt: Array is already empty!");
@@ -540,6 +574,10 @@ namespace justin_su
         {
             removeAtEnd();
             return;
+        }
+        for (int i = position; i < size; i++)
+        {
+            array[i] = array[i + 1];
         }
         // Decrease size by 1
         size--;
@@ -583,6 +621,8 @@ namespace justin_su
     template<class T>
     T Array<T>::at(int position)
     {
+        if (isEmpty())
+            throw std::runtime_error("at: Array is empty!");
         if (position < 0 || position > size - 1)
             throw std::runtime_error("at: Given position is out of bounds!");
         // Return the element at given position
@@ -614,7 +654,7 @@ namespace justin_su
             for (int j = 0; j < size - i - 1; j++)
             {
                 // If the next element is greater than current element
-                if (array[j + 1] > array[j])
+                if (array[j] > array[j + 1])
                 {
                     // Swap
                     T temp = array[j + 1];
@@ -698,11 +738,14 @@ namespace justin_su
     template<class T>
     T& Array<T>::operator[](int index)
     {
+        // If array is empty
+        if (isEmpty())
+            throw std::runtime_error("[]: Array is empty!");
         // If given index is out of bounds, throw runtime_error
-        if (index < 0 || index > size)
+        if (index < 0 || index > size - 1)
             throw std::runtime_error("[]: Index is out of bounds!");
         // Return the element at given index
-        return  array[index - 1];
+        return  array[index];
     }
 
 
