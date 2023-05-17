@@ -648,6 +648,9 @@ namespace justin_su
     template<class T>
     void Array<T>::sort()
     {
+		// If there are 0 or 1 element
+		 if (size == 1 || isEmpty())
+            return;
         // Bubble sort
         for (int i = 0; i < size; i++)
         {
